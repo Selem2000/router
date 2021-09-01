@@ -1,0 +1,14 @@
+.trailer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+}
+.movieName {
+  margin: 20px 0;
+  color: #fe4141;
+  font-size: xxx-large;
+  font-weight: bolder;
+  letter-spacing: 3px;
+}

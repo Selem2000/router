@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Filter from "./component/filter/Filter";
 import Footer from "./component/footer/Footer";
+import Trailer from "./component/movies/description/Trailer";
 import Movies from "./component/movies/Movies";
 import SearchAppBar from "./component/navbar/Navbar";
 
@@ -17,6 +19,7 @@ function App() {
       type: "Action | Crime",
       description:
         "A relentlessly-paced hybrid of gritty crime thriller and Lovecraftian supernatural horror, The Devil's Mile follows a trio of kidnappers who take an ill-advised detour en route to deliver...",
+      trailer: "https:///embed/ozjnZ2tI9pg",
     },
     {
       id: Math.random(),
@@ -28,6 +31,7 @@ function App() {
       type: "Western",
       description:
         "A mysterious stranger with a harmonica joins forces with a notorious desperado to protect a beautiful widow from a ruthless assassin working for the railroad.",
+      trailer: "https://www.youtube.com/embed/L_hpC34yFz8",
     },
     {
       id: Math.random(),
@@ -39,6 +43,7 @@ function App() {
       type: "Crime | Drama",
       description:
         "A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze fuels his urge for violent action by attempting to liberate a presidential campaign worker and an underage prostitute.",
+      trailer: "https://www.youtube.com/embed/UUxD4-dEzn0",
     },
     {
       id: Math.random(),
@@ -50,6 +55,7 @@ function App() {
       type: "Action | Adventure",
       description:
         "In a self-destructing world, a vengeful Australian policeman sets out to stop a violent motorcycle gang.",
+      trailer: "https:///embed/hEJnMQG9ev8",
     },
     {
       id: Math.random(),
@@ -61,6 +67,7 @@ function App() {
       type: "Comedy | Drama",
       description:
         "A family determined to get their young daughter into the finals of a beauty pageant take a cross-country trip in their VW bus.",
+      trailer: "https:///embed/bQ7BZTMLImA",
     },
     {
       id: Math.random(),
@@ -74,6 +81,7 @@ function App() {
         "The lead character, called 'The Bride,' was a member of the Deadly Viper Assassination Squad, led by her lover 'Bill.'The Bride' decided to escape her life as a killer.",
       details:
         "https://www.imdb.com/title/tt0266697/plotsummary?ref_=tt_stry_pl",
+      trailer: "https:///embed/WTt8cCIvGYI",
     },
     {
       id: Math.random(),
@@ -85,6 +93,7 @@ function App() {
       type: " Biography | Crime | Drama  ",
       description:
         "Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.",
+      trailer: "https:///embed/iszwuX1AK6A",
     },
   ]);
   const [title, setTitle] = useState("");
@@ -103,13 +112,27 @@ function App() {
   return (
     <div>
       <SearchAppBar />
-      <Filter filtrageTitle={filtrageTitle} filtrageRating={filtrageRating} />
-      <Movies
-        Data={moviesData}
-        title={title}
-        rating={rating}
-        addNewMovie={addNewMovie}
-      />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <div>
+              <Filter
+                filtrageTitle={filtrageTitle}
+                filtrageRating={filtrageRating}
+              />
+              <Movies
+                Data={moviesData}
+                title={title}
+                rating={rating}
+                addNewMovie={addNewMovie}
+              />
+            </div>
+          )}
+        ></Route>
+        <Route path="/:name" render={(props) => <Trailer {...props} />} />
+      </Switch>
       <Footer />
     </div>
   );

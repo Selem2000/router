@@ -1,12 +1,12 @@
 import React from "react";
 import Rating from "@material-ui/lab/Rating";
-
+import { Link } from "react-router-dom";
 import "./movie.css";
 
 const Movie = ({ details, showYourName }) => {
   const { name, date, type, description, image, rating } = details;
   return (
-    <div className="movieBox" onClick={() => showYourName(name)}>
+    <div className="movieBox">
       <div className="container">
         <div className="cellphone-container">
           <div className="movie">
@@ -47,9 +47,11 @@ const Movie = ({ details, showYourName }) => {
               <div className="mr-grid action-row">
                 <div className="col2">
                   <div className="watch-btn">
-                    <h3>
-                      <i className="material-icons"></i>WATCH TRAILER
-                    </h3>
+                    <Link to={{ pathname: `/${name}`, state: details }}>
+                      <h3>
+                        <i className="material-icons"></i>WATCH TRAILER
+                      </h3>
+                    </Link>
                   </div>
                 </div>
                 <div className="col6 action-btn">

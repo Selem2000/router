@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SimpleModal from "./modal/Modal";
 import Movie from "./movie/Movie";
 
